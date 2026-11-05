@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Alfa Gym</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+  <main class="tela">
+    <section class="painel-formulario" aria-label="Login Alfa Gym">
+      <div class="conteudo-formulario">
+        <header class="cabecalho">
+          <h1 class="titulo">Bem-vindo de volta</h1>
+        </header>
+
+        <p class="subtitulo">Acesse sua conta</p>
+
+        <div class="seletor-acesso" aria-label="Alternar tipo de acesso">
+          <button class="opcao-ativa" type="button">Login</button>
+          <a class="opcao-cadastro" href="novoUsuario.html">Novo Usuário</a>
+        </div>
+
+        <form class="formulario" action="/login" method="POST">
+          <div class="campo">
+            <label for="cpf">E-mail</label>
+            <input
+              type="text"
+              id="usuario"
+              name="cpf"
+              placeholder="Digite seu usuário"
+              required
+            >
+          </div>
+
+          <div class="campo">
+            <label for="senha">Senha</label>
+            <div class="campo-com-icone">
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha"
+                required
+              >
+              <span class="icone-senha" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="m2 2 20 20M10.6 10.6A2 2 0 0 0 13.4 13.4M9.5 5.2A10.6 10.6 0 0 1 12 5c5.4 0 9.5 5 10 7-0.4 1.2-1.4 2.8-2.9 4.1M6.4 6.5C4.2 8 2.8 10.3 2 12c0.7 1.6 4.6 7 10 7 1.7 0 3.2-0.4 4.5-1.1"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <button class="botao-principal" type="submit">Entrar</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="painel-imagem" aria-label="Imagem da academia Alfa Gym">
+      <img class="imagem-fundo" src="img/background-ft 1.jpg" alt="">
+      <div class="escurecer-imagem"></div>
+      <div class="marca">
+        <img class="imagem-logo" src="img/logo.svg" alt="Alfa Gym">
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Listagem de Funcionarios | Alfa Gym</title>
+
+  <link rel="stylesheet" href="/css/listagem.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+
+<body>
+  <div class="dashboard">
+    <%- include('../partials/sidebar') %>
+
+      <main class="main-content">
+        <div class="card-container">
+          <div class="card-header">
+            <h2>Listagem de Funcionários</h2>
+            <a href="/funcionarios/novo" class="btn-primary">+ Cadastrar Funcionário</a>
+          </div>
+
+          <!-- Tabela de Listagem -->
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Data de Nascimento</th>
+                  <th>Email</th>
+                  <th>CPF</th>
+                  <th>Cargo</th>
+                  <th>Salário</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (typeof elemetosDaPagina !== 'undefined' && elemetosDaPagina.length > 0) { %>
+                  <% elemetosDaPagina.forEach(funcionario => { %>
+                    <tr>
+                      <td>
+                        <%= funcionario.nome %> <%= funcionario.sobrenome %>
+                      </td>
+                      <td>
+                        <%= new Date(funcionario.data_nascimento).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %>
+                      </td>
+                      <td>
+                        <%= funcionario.email %>
+                      </td>
+                      <td>
+                        <%= funcionario.cpf %>
+                      </td>
+                      <td>
+                        <%= funcionario.cargo %>
+                      </td>
+                      <td>R$ <%= Number(funcionario.salario).toLocaleString('pt-BR', { minimumFractionDigits: 2 }) %>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a href="/funcionarios/editar/<%= funcionario.id_funcionario %>" class="btn-action edit">Editar</a>
+                          <form action="/funcionarios/deletar/<%= funcionario.id_funcionario %>" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?');">
+                              <button type="submit" class="btn-action delete">Excluir</button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="7">Nenhum funcionário encontrado</td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Paginação -->
+          <div class="pagination">
+            <div class="pagination-buttons">
+              <!-- Botão Anterior -->
+              <% if (paginaAtual > 1) { %>
+                <a href="?page=<%= paginaAtual - 1 %>" class="page-btn">Anterior</a>
+              <% } else { %>
+                <a href="#" class="page-btn disabled" tabindex="-1" aria-disabled="true">Anterior</a>
+              <% } %>
+
+              <!-- Números das Páginas -->
+              <% for (let i = 1; i <= totalPaginas; i++) { %>
+                <a href="?page=<%= i %>" class="page-btn <%= i === paginaAtual ? 'active' : '' %>">
+                  <%= i %>
+                </a>
+              <% } %>
+
+              <!-- Botão Próximo -->
+              <% if (paginaAtual < totalPaginas) { %>
+                <a href="?page=<%= paginaAtual + 1 %>" class="page-btn">Próximo</a>
+              <% } else { %>
+                <a href="#" class="page-btn disabled" tabindex="-1" aria-disabled="true">Próximo</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+    </main>
+  </div>
+</body>
+</html>

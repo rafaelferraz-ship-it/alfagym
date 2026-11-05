@@ -1,0 +1,30 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "_moduleAliases": {
+    "@": "src"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.+(js|json)\"",
+    "dev": "nodemon ./src/app.js"
+  },
+  "dependencies": {
+    "bcrypt": "6.0.0",
+    "dotenv": "^18.0.9",
+    "ejs": "7.0.1",
+    "express": "5.3.0",
+    "express-session": "^1.19.0",
+    "module-alias": "2.3.4",
+    "mysql2": "3.24.5"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.14",
+    "prettier": "3.9.10"
+  }
+}

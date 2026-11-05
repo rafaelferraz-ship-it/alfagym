@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Listagem de Planos | Alfa Gym</title>
+
+  <!-- Utiliza os mesmos ficheiros CSS para garantir a consistência do layout -->
+  <link rel="stylesheet" href="/css/listagem.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+
+<body>
+  <div class="dashboard">
+    <%- include('../partials/sidebar') %>
+
+      <main class="main-content">
+        <div class="card-container">
+          <div class="card-header">
+            <h2>Listagem de Planos</h2>
+            <a href="/planos/novo" class="btn-primary">+ Cadastrar Plano</a>
+          </div>
+
+          <!-- Tabela de Listagem -->
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nome do Plano</th>
+                  <th>Periodicidade</th>
+                  <th>Valor</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (typeof elementosDaPagina !== 'undefined' && elementosDaPagina.length > 0) { %>
+                  <% elementosDaPagina.forEach(plano => { %>
+                    <tr>
+                      <td>
+                        <%= plano.nome_plano %>
+                      </td>
+                      <td>
+                        <%= plano.periodicidade %>
+                      </td>
+                      <td>
+                        R$ <%= Number(plano.valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 }) %>
+                      </td>
+                      <td>
+                        <div class="actions">
+                          <a href="/planos/editar/<%= plano.id_plano %>" class="btn-action edit">Editar</a>
+                          <form action="/planos/deletar/<%= plano.id_plano %>" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este plano?');">
+                              <button type="submit" class="btn-action delete">Excluir</button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="4">Nenhum plano encontrado</td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Paginação -->
+          <div class="pagination">
+            <div class="pagination-buttons">
+              <!-- Botão Anterior -->
+              <% if (paginaAtual > 1) { %>
+                <a href="?page=<%= paginaAtual - 1 %>" class="page-btn">Anterior</a>
+              <% } else { %>
+                <a href="#" class="page-btn disabled" tabindex="-1" aria-disabled="true">Anterior</a>
+              <% } %>
+
+              <!-- Números das Páginas -->
+              <% for (let i = 1; i <= totalPaginas; i++) { %>
+                <a href="?page=<%= i %>" class="page-btn <%= i === paginaAtual ? 'active' : '' %>">
+                  <%= i %>
+                </a>
+              <% } %>
+
+              <!-- Botão Próximo -->
+              <% if (paginaAtual < totalPaginas) { %>
+                <a href="?page=<%= paginaAtual + 1 %>" class="page-btn">Próximo</a>
+              <% } else { %>
+                <a href="#" class="page-btn disabled" tabindex="-1" aria-disabled="true">Próximo</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+    </main>
+  </div>
+</body>
+</html>

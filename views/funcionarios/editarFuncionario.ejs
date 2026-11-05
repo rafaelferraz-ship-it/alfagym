@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Funcionário | Alfa Gym</title>
+
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/novo.css" />
+</head>
+<body>
+  <div class="dashboard">
+
+    <%- include('../partials/sidebar') %>
+
+    <main class="main-content">
+      <div class="cartao">
+        <h1>Editar Funcionário</h1>
+
+        <form action="/funcionarios/editar/<%= funcionario.id_funcionario %>" method="POST">
+
+          <h2>Dados Pessoais</h2>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" value="<%= funcionario.nome %>" required>
+            </div>
+            <div class="campo">
+              <label for="sobrenome">Sobrenome</label>
+              <input type="text" id="sobrenome" name="sobrenome" value="<%= funcionario.sobrenome %>" required>
+            </div>
+          </div>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="cpf">CPF</label>
+              <input type="text" id="cpf" name="cpf" value="<%= funcionario.cpf %>" required>
+            </div>
+            <div class="campo">
+              <label for="data_nascimento">Data de Nascimento</label>
+              <input 
+                type="date" 
+                id="data_nascimento" 
+                name="data_nascimento" 
+                value="<%= funcionario.data_nascimento ? new Date(funcionario.data_nascimento).toISOString().split('T')[0] : '' %>" 
+                required
+              >
+            </div>
+          </div>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" value="<%= funcionario.email %>" required>
+            </div>
+            <div class="campo">
+              <label for="senha">Nova Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="Digite uma nova senha" required>
+            </div>
+          </div>
+
+          <h2>Dados Profissionais</h2>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="cargo">Cargo</label>
+              <input type="text" id="cargo" name="cargo" value="<%= funcionario.cargo %>" required>
+            </div>
+            <div class="campo">
+              <label for="salario">Salário</label>
+              <input type="number" id="salario" name="salario" step="0.01" value="<%= funcionario.salario %>" required>
+            </div>
+          </div>
+
+          <h2>Localização</h2>
+
+          <div class="campo">
+            <label for="endereco">Endereço Completo</label>
+            <textarea id="endereco" name="endereco" rows="4" required><%= funcionario.endereco %></textarea>
+          </div>
+
+          <button type="submit">Salvar Alterações</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>

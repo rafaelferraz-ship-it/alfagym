@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AlfaGym - Dashboard</title>
+
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+
+<body>
+  <div class="dashboard">
+    <%- include('partials/sidebar') %>
+
+    <main class="main-content">
+      <!-- Cabeçalho com boas-vindas e filtro -->
+      <header class="content-header">
+        <div class="header-titles">
+          <h1>Bem-vindo de volta, <%= usuarioLogado.nome %></h1>
+          <p class="subtitle">Painel de gerenciamento da academia</p>
+        </div>
+      </header>
+
+      <!-- Grid dos 4 Cards de Métricas -->
+      <section class="cards-grid">
+        <!-- Card 1: Alunos -->
+        <div class="metric-card">
+          <span class="card-title">Alunos Cadastrados</span>
+          <div class="card-value">-</div>
+          <div class="card-variation">
+            <span class="variation-label">Variação:</span>
+            <span class="variation-value positive">- alunos</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Receita Total -->
+        <div class="metric-card">
+          <span class="card-title">Receita Total</span>
+          <div class="card-value">R$ -</div>
+          <div class="card-variation">
+            <span class="variation-label">Variação:</span>
+            <span class="variation-value positive">-</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Planos -->
+        <div class="metric-card">
+          <span class="card-title">Planos Cadastrados</span>
+          <div class="card-value"><%= metricas.totalPlanos %></div>
+          <div class="card-variation">
+            <span class="variation-label">Variação:</span>
+            <span class="variation-value negative">- plano</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Colaboradores -->
+        <div class="metric-card">
+          <span class="card-title">Colaboradores Cadastrados</span>
+          <div class="card-value"><%= metricas.totalFuncionarios %></div>
+          <div class="card-variation">
+            <span class="variation-label">Variação:</span>
+            <span class="variation-value positive">- colaboradores</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

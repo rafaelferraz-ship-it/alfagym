@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Plano | Alfa Gym</title>
+
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/novo.css" />
+</head>
+<body>
+  <div class="dashboard">
+
+    <%- include('../partials/sidebar') %>
+
+    <main class="main-content">
+      <div class="cartao">
+        <h1>Editar Plano</h1>
+
+        <form action="/planos/editar/<%= plano.id_plano %>" method="POST">
+
+          <h2>Detalhes do Plano</h2>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="nome_plano">Nome do Plano</label>
+              <input type="text" id="nome_plano" name="nome_plano" value="<%= plano.nome_plano %>" required>
+            </div>
+            <div class="campo">
+              <label for="valor">Valor Mensal (R$)</label>
+              <input type="number" id="valor" name="valor" step="0.01" value="<%= plano.valor %>" required>
+            </div>
+          </div>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="periodicidade">Duração (Meses)</label>
+              <input type="number" id="periodicidade" name="periodicidade" value="<%= plano.periodicidade %>" required>
+            </div>
+          </div>
+
+          <button type="submit">Salvar Alterações</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>

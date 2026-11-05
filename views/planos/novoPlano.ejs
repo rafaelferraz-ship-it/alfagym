@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Plano | Alfa Gym</title>
+
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <!-- Reutilizando o CSS de funcionário para garantir a exata mesma interface -->
+  <link rel="stylesheet" href="/css/novo.css" />
+</head>
+<body>
+  <div class="dashboard">
+
+    <%- include('../partials/sidebar') %>
+
+    <main class="main-content">
+      <div class="cartao">
+        <h1>Cadastro de Plano</h1>
+
+        <form action="/planos" method="POST">
+
+          <h2>Detalhes do Plano</h2>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="nome_plano">Nome do Plano</label>
+              <input type="text" id="nome_plano" name="nome_plano" placeholder="Ex: Trimestral" required>
+            </div>
+            <div class="campo">
+              <label for="valor">Valor Mensal (R$)</label>
+              <input type="number" id="valor" name="valor" placeholder="R$ 100,00" step="0.01" required>
+            </div>
+          </div>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="periodicidade">Duração (Meses)</label>
+              <input type="number" id="periodicidade" name="periodicidade" placeholder="Ex: 12" required>
+            </div>
+          </div>
+
+          <button type="submit">Cadastrar Plano</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>

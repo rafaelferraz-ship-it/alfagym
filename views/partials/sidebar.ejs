@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <div class="sidebar-inner">
+    <img
+      class="sidebar-logo"
+      src="/img/logo.webp"
+      alt="Logo AlfaGym"
+    />
+
+    <nav class="sidebar-navigation" aria-label="Navegação principal">
+      <a class="navigation-link" href="/dashboard">
+        Dashboard
+      </a>
+      <a class="navigation-link" href="/funcionarios">
+        Funcionários
+      </a>
+      <a class="navigation-link" href="/planos">
+        Planos
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <span class="user-name"><%= usuarioLogado.nome %></span>
+      </div>
+      <a href="/logout" class="logout-button">Sair</a>
+    </div>
+  </div>
+</div>
